@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-avdlic06q0$8w75&8j_ba^cj1lb3rke2u*66$a7y(31jm7g+6q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['notekeeper2024.pythonanywhere.com']
+ALLOWED_HOSTS = ['notekeeper2024.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "core.apps.CoreConfig",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "notes.apps.NotesConfig"
 ]
 
 MIDDLEWARE = [
@@ -78,6 +82,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
 }
 
 
